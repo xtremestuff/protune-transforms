@@ -1,0 +1,22 @@
+//GoPro Protune IDT for ACES workflow inside DaVinci Resolve
+
+//Rec709 to ACES using Bradford CA
+__CONSTANT__ float rec709[3][3] = {{0.4396329819f, 0.3829886982f, 0.1773783200f}, {0.0897764429f, 0.8134394287f, 0.0967841283f}, {0.0175411704f, 0.1115465533f, 0.8709122763f}};
+
+__DEVICE__ float protune_to_linear(float xV) {
+	return ((_powf(113.0f, xV) - 1.0f) / 112.0f);
+}
+
+
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B) {
+
+	p_R = protune_to_linear(p_R);
+	p_G = protune_to_linear(p_G);
+	p_B = protune_to_linear(p_B);
+
+	float rVal = rec709[0][0] * p_R + rec709[0][1] * p_G + rec709[0][2] * p_B;
+	float gVal = rec709[1][0] * p_R + rec709[1][1] * p_G + rec709[1][2] * p_B;
+	float bVal = rec709[2][0] * p_R + rec709[2][1] * p_G + rec709[2][2] * p_B;
+
+	return make_float3( rVal, gVal, bVal);
+}
