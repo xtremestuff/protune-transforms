@@ -1,7 +1,7 @@
-//GoPro Protune IDT for ACES workflow inside DaVinci Resolve
+//GoPro Protune IDT for ACES workflow inside DaVinci Resolve using
 
-//Protune Native to ACES using CAT02
-__CONSTANT__ float native[3][3] = {{0.533448508542292f, 0.324139089986554f, 0.142412401514021f},{-0.050729951266834f, 1.075720428226101f, -0.024990476953513f},{0.071419655002388f, -0.290521944571318f, 1.219102289568427f}};
+//GoPro NATIVE to ACES Transform via OpenColorIO using Bradford
+//__CONSTANT__ float native[3][3] = {{0.533448429f, 0.32413911f, 0.142412421f}, {-0.050729924f, 1.07572006f, -0.024990416f}, {0.071419661f, -0.290521962f, 1.219102381f}};
 
 
 __DEVICE__ float protune_to_linear(float xV) {
