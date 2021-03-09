@@ -1,4 +1,7 @@
 //GoPro Protune IDT for ACES workflow inside DaVinci Resolve using
+#if (__RESOLVE_VER_MAJOR__ >= 17)
+DEFINE_ACES_PARAM(IS_PARAMETRIC_ACES_TRANSFORM: 0)
+#endif
 
 //GoPro NATIVE to ACES Transform via OpenColorIO using Bradford
 __CONSTANT__ float native[3][3] = {{0.533448429f, 0.32413911f, 0.142412421f}, {-0.050729924f, 1.07572006f, -0.024990416f}, {0.071419661f, -0.290521962f, 1.219102381f}};
