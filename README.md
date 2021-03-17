@@ -18,16 +18,16 @@ Linux: /home/resolve/LUT
 
 ### Resolve 17 ACES IDT
 
-As of Resolve 17, the DCTL files can be loaded as an Input Transform via the Project settings
+As of Resolve 17, the DCTL files should be loaded as an Input Transform via the Project settings
 
-The ACES DCTL files must be copied to the appropriate IDT folder:
+Only the ACES DCTL files must be copied to the appropriate IDT folder:
 
 
 Windows: %APPDATA%\Blackmagic Design\DaVinci Resolve\Support\ACES Transforms\IDT\
 
-Mac: $HOME/Library/Application Support/Blackmagic Design/DaVinci Resolve/ACES Transforms/IDT/
+Mac: ~/Library/Application Support/Blackmagic Design/DaVinci Resolve/ACES Transforms/IDT/
 
-Linux: $HOME/.local/share/DaVinciResolve/ACES Transforms/IDT/
+Linux: ~/.local/share/DaVinciResolve/ACES Transforms/IDT/
 
 
 
