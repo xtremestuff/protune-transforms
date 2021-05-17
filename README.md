@@ -26,6 +26,7 @@ C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT\
 
 ### Resolve 17 ACES IDT
 As of Resolve 17, the DCTL files should be loaded as an Input Transform via the Project settings.
+
 As of Resolve 17.2, the DCTL files can be selected as ACES Input Transforms for individual clips.
 
 Only the ACES DCTL files must be copied to the appropriate IDT folder:
