@@ -74,3 +74,16 @@ Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - ou
 #### GoPro_Protune_Rec709_Rec709_Scene.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Scene
 
+#### GoPro_Protune_Native_Rec709_Gamma-2.2.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.709 Gamma 2.2
+
+#### GoPro_Protune_Rec709_Rec709_Gamma-2.2.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.2
+
+#### GoPro_Protune_Native_Rec709_Gamma-2.4.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.709 Gamma 2.4
+
+#### GoPro_Protune_Rec709_Rec709_Gamma-2.4.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.4
+
+
