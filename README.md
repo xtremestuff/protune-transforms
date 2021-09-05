@@ -10,7 +10,8 @@ Depending on the chosen Color Science, they can be used either in ACES or in DaV
 
 The DCTL files contain ACES and Rec.709 Scene transforms.
 
-Save the non-ACES DCTL files to the relevant locations based on the host Operating System as noted below:
+### LUT Folder
+Save the non-ACES DCTL files in the LUT folder to the relevant location based on the host Operating System as noted below:
 
 #### Windows
 C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT\
@@ -23,13 +24,9 @@ C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT\
 
 
 
+### ACES IDT Folder
 
-### Resolve 17 ACES IDT
-As of Resolve 17, the DCTL files should be loaded as an Input Transform via the Project settings.
-
-As of Resolve 17.2, the DCTL files can be selected as ACES Input Transforms for individual clips.
-
-Only the ACES DCTL files must be copied to the appropriate IDT folder:
+The ACES DCTL files in the IDT folder must be copied to the appropriate IDT directory based on the host Operating System:
 
 
 #### Windows
@@ -41,14 +38,29 @@ Only the ACES DCTL files must be copied to the appropriate IDT folder:
 #### Linux
 ~/.local/share/DaVinciResolve/ACES Transforms/IDT/
 
-### LUT Menu
-To use via LUT menu (or DaVinci CTL if using Resolve 16 or below), copy the files to the LUT folder and comment out the first few lines as follows:
+
+### Usage
+
+#### ACES IDT
+
+As of Resolve 17, the IDT can be loaded as an Input Transform via the Project settings.
+
+As of Resolve 17.2, the IDT files can be selected as ACES Input Transforms for individual clips.
+
+
+#### DaVinci CTL or LUT Menu
+Select the relevant dctl file via the DaVinci CTL or LUT Menu. Ensure Input Color Space is set to bypass for the relevant clip.
+
+
+To use in ACES via the LUT menu (or DaVinci CTL if using Resolve 16 or below), copy the IDT folder contents to the LUT folder and comment out the first few lines as follows:
 
 ```
 //#if (__RESOLVE_VER_MAJOR__ >= 17)
 //DEFINE_ACES_PARAM(IS_PARAMETRIC_ACES_TRANSFORM: 0)
 //#endif
 ```
+
+
 
 
 ## ACEScc / ACEScct Transforms
