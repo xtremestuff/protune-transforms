@@ -6,7 +6,7 @@ The following are a series of GoPro Protune Input Transforms (IDT) for DaVinci R
 Depending on the chosen Color Science, they can be used either in ACES or in DaVinci YRGB for Rec.709 output
 
 
-## Installation & Usage
+## Installation
 
 The DCTL files contain ACES and Rec.709 Scene transforms.
 
@@ -39,16 +39,16 @@ The ACES DCTL files in the IDT folder must be copied to the appropriate IDT dire
 ~/.local/share/DaVinciResolve/ACES Transforms/IDT/
 
 
-### Usage
+## Usage
 
-#### ACES IDT
+### ACES IDT
 
 As of Resolve 17, the IDT can be loaded as an Input Transform via the Project settings.
 
 As of Resolve 17.2, the IDT files can be selected as ACES Input Transforms for individual clips.
 
 
-#### DaVinci CTL or LUT Menu
+### DaVinci CTL or LUT Menu
 Select the relevant dctl file via the DaVinci CTL or LUT Menu. Ensure Input Color Space is set to bypass for the relevant clip.
 
 
