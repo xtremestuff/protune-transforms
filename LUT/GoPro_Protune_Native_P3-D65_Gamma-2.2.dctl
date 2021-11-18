@@ -1,0 +1,27 @@
+//GoPro Protune Input Transform for DaVinci YRGB workflow inside DaVinci Resolve
+
+//Protune NATIVE to P3-D65
+__CONSTANT__ float nat_to_p3d65[3][3] = { { 1.091683743994f,  0.008955219348f, -0.100638963342f}, {-0.170116388642f,  1.355057036258f, -0.184940647616f}, { 0.082081754205f, -0.360137692839f,  1.278055938634f}};
+
+__DEVICE__ float protune_to_linear(float xV) {
+	return ((_powf(113.0f, xV) - 1.0f) / 112.0f);
+}
+
+__DEVICE__ float lin_to_gamma(float x) {
+	return _powf(x, 1.0f/2.4f);
+}
+
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B) {
+
+	float3 RGBv;
+
+	p_R = protune_to_linear(p_R);
+	p_G = protune_to_linear(p_G);
+	p_B = protune_to_linear(p_B);
+
+	RGBv.x = lin_to_gamma(nat_to_p3d65[0][0] * p_R + nat_to_p3d65[0][1] * p_G + nat_to_p3d65[0][2] * p_B);
+	RGBv.y = lin_to_gamma(nat_to_p3d65[1][0] * p_R + nat_to_p3d65[1][1] * p_G + nat_to_p3d65[1][2] * p_B);
+	RGBv.z = lin_to_gamma(nat_to_p3d65[2][0] * p_R + nat_to_p3d65[2][1] * p_G + nat_to_p3d65[2][2] * p_B);
+
+	return RGBv;
+}

@@ -71,13 +71,13 @@ To use in ACES via the LUT menu (or DaVinci CTL if using Resolve 16 or below), c
 IDT for ACES using Protune (FLAT) Gamma with Native Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
 
 #### GoPro_Protune_Native_Bradford-CA_ACES.dctl
-IDT for ACES using Protune (FLAT) Gamma with Native Color Space - with Bradford Chromatic Adaptation
+IDT for ACES using Protune (FLAT) Gamma with Native Color Space - with Bradford Chromatic Adaptation (For test purposes only)
 
 #### GoPro_Protune_Rec709_ACES.dctl
 IDT for ACES using Protune (FLAT) Gamma with Rec.709 (non-Native) Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
 
 #### GoPro_Protune_Rec709_Bradford-CA_ACES.dctl
-IDT for ACES using Protune (FLAT) Gamma with Rec.709 (non-Native) Color Space - with Bradford Chromatic Adaptation
+IDT for ACES using Protune (FLAT) Gamma with Rec.709 (non-Native) Color Space - with Bradford Chromatic Adaptation (For test purposes only)
 
 
 ## DaVinci YRGB Transforms
@@ -97,7 +97,27 @@ Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - o
 #### GoPro_Protune_Native_Rec709_Gamma-2.4.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.709 Gamma 2.4
 
+#### GoPro_Protune_Native_Rec709_Gamma-2.6.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.709 Gamma 2.6
+
 #### GoPro_Protune_Rec709_Rec709_Gamma-2.4.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.4
 
+#### GoPro_Protune_Rec709_Rec709_Gamma-2.6.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.6
+
+#### GoPro_Protune_Native_P3-D65_Scene.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to P3-D65 Scene
+
+#### GoPro_Protune_Native_P3-D65_Gamma-2.2.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to P3-D65 Gamma 2.2
+
+#### GoPro_Protune_Native_P3-D65_Gamma-2.4.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to P3-D65 Gamma 2.4
+
+#### GoPro_Protune_Native_P3-D65_Gamma-2.6.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to P3-D65 Gamma 2.6
+
+#### GoPro_Protune_Native_DCI-P3_Gamma-2.6.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to DCI-P3 Gamma 2.6
 
