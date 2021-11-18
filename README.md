@@ -26,7 +26,9 @@ C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT\
 
 ### ACES IDT Folder
 
-The ACES DCTL files in the IDT folder must be copied to the appropriate IDT directory based on the host Operating System:
+Note: If using Resolve 16 or below, copy the ACES DCTL files in the IDT folder to the designated LUT folder mentioned above.
+
+If using Resolve 17 or above, The ACES DCTL files in the IDT folder must be copied to the appropriate IDT directory based on the host Operating System:
 
 
 #### Windows
