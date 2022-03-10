@@ -3,7 +3,18 @@ GoPro Protune Transforms
 
 The following are a series of GoPro Protune Input Transforms (IDT) for DaVinci Resolve.
 
-Depending on the chosen Color Science, they can be used either in ACES or in DaVinci YRGB for Rec.709 output
+Depending on the chosen Color Science, they can be used either in ACES or in DaVinci YRGB.
+
+The Protune gamma curve is based off the Technicolor CineStyle gamma.
+
+
+
+## Naming Convetion
+
+All files with the exception of the ACES IDTs use the following naming convention:
+
+GoPro_Protune_<CAMERA-COLOR-SPACE>_<DESTINATION-COLOR-SPACE>_<DESTINATION-GAMMA>.dctl
+
 
 
 ## Installation
@@ -80,7 +91,24 @@ IDT for ACES using Protune (FLAT) Gamma with Rec.709 (non-Native) Color Space - 
 IDT for ACES using Protune (FLAT) Gamma with Rec.709 (non-Native) Color Space - with Bradford Chromatic Adaptation (For test purposes only)
 
 
-## DaVinci YRGB Transforms
+
+## DaVinci Intermediate Transforms
+
+#### GoPro_Protune_Native_DWG_DaVinci-Intermediate.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to DaVinci Wide Gamut and DaVinci Intermediate
+
+#### GoPro_Protune_Native_Rec2020_DaVinci-Intermediate.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.2020 and DaVinci Intermediate
+
+#### GoPro_Protune_Rec709_DWG_DaVinci-Intermediate.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to DaVinci Wide Gamut and DaVinci Intermediate
+
+#### GoPro_Protune_Rec709_Rec2020_DaVinci-Intermediate.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.2020 and DaVinci Intermediate
+
+
+
+## Other DaVinci YRGB Transforms
 
 #### GoPro_Protune_Native_Rec709_Scene.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.709 Scene

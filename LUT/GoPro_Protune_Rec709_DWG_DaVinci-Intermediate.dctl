@@ -1,0 +1,28 @@
+//GoPro Protune Input Transform for DaVinci YRGB workflow inside DaVinci Resolve
+
+//Protune Rec.709 to DaVinci Wide Gamut
+__CONSTANT__ float rec709_to_dwg[3][3] =  { { 0.5627674560f, 0.3235165887f, 0.1137159553f}, { 0.0777546353f, 0.7495773462f, 0.1726680186f}, { 0.0646691999f, 0.1919986920f, 0.7433321080f} };
+
+__DEVICE__ float protune_to_linear(float xV) {
+	return ((_powf(113.0f, xV) - 1.0f) / 112.0f);
+}
+
+__DEVICE__ float lin_to_inter(float x) {
+	if(x > 0.00262409f) return (_log2f(x + 0.0075f) + 7.0f) * 0.07329248f;
+	else return x * 10.44426855f;
+}
+
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B) {
+
+	float3 RGBv;
+
+	p_R = protune_to_linear(p_R);
+	p_G = protune_to_linear(p_G);
+	p_B = protune_to_linear(p_B);
+
+	RGBv.x = lin_to_inter(rec709_to_dwg[0][0] * p_R + rec709_to_dwg[0][1] * p_G + rec709_to_dwg[0][2] * p_B);
+	RGBv.y = lin_to_inter(rec709_to_dwg[1][0] * p_R + rec709_to_dwg[1][1] * p_G + rec709_to_dwg[1][2] * p_B);
+	RGBv.z = lin_to_inter(rec709_to_dwg[2][0] * p_R + rec709_to_dwg[2][1] * p_G + rec709_to_dwg[2][2] * p_B);
+
+	return RGBv;
+}
