@@ -13,7 +13,7 @@ The Protune gamma curve is based off the Technicolor CineStyle gamma.
 
 All files with the exception of the ACES IDTs use the following naming convention:
 
-GoPro_Protune_<<CAMERA-COLOR-SPACE>>_<<DESTINATION-COLOR-SPACE>>_<<DESTINATION-GAMMA>>.dctl
+`GoPro_Protune_<CAMERA-COLOR-SPACE>_<DESTINATION-COLOR-SPACE>_<DESTINATION-GAMMA>.dctl`
 
 
 
