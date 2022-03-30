@@ -8,7 +8,8 @@ __DEVICE__ float protune_to_linear(float xV) {
 }
 
 __DEVICE__ float lin_to_gamma(float x) {
-	return _powf(x, 1.0f/2.4f);
+	if(x >= 0) return _powf(x, 1.0f/2.2f);
+	else return 0.0f;
 }
 
 __DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B) {
