@@ -62,7 +62,7 @@ As of Resolve 17.2, the IDT files can be selected as ACES Input Transforms for i
 
 
 ### DaVinci CTL or LUT Menu
-Select the relevant dctl file via the DaVinci CTL or LUT Menu. Ensure Input Color Space is set to Bypass (or Same as Timeline) for the relevant clip. Ensure the selected DCTL matches with the project's Timeline Color Space and Gamma.
+Select the relevant dctl file via the DaVinci CTL or LUT Menu. Ensure Input Color Space is set to Bypass (or Same as Timeline) for the relevant clip. Ensure the selected DCTL matches with the project's Timeline Color Space and Gamma. Input DRT should be set to None.
 
 
 To use in ACES via the LUT menu (or DaVinci CTL if using Resolve 16 or below), copy the IDT folder contents to the LUT folder and comment out the first few lines as follows:
