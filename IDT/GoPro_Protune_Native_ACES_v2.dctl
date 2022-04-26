@@ -1,0 +1,25 @@
+//GoPro Protune IDT for ACES workflow inside DaVinci Resolve
+#if (__RESOLVE_VER_MAJOR__ >= 17)
+DEFINE_ACES_PARAM(IS_PARAMETRIC_ACES_TRANSFORM: 0)
+#endif
+
+//Protune Native to ACES using CAT02
+__CONSTANT__ float native[3][3] = { {0.533070564f, 0.325915039f, 0.141014352f}, {-0.051353544f, 1.07813263f, -0.0267790109f}, {0.0721193627f, -0.29598105f, 1.22386158f} };
+
+__DEVICE__ float protune_to_linear(float xV) {
+	return ((_powf(113.0f, xV) - 1.0f) / 112.0f);
+}
+
+
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B) {
+
+	p_R = protune_to_linear(p_R);
+	p_G = protune_to_linear(p_G);
+	p_B = protune_to_linear(p_B);
+
+	float rVal = native[0][0] * p_R + native[0][1] * p_G + native[0][2] * p_B;
+	float gVal = native[1][0] * p_R + native[1][1] * p_G + native[1][2] * p_B;
+	float bVal = native[2][0] * p_R + native[2][1] * p_G + native[2][2] * p_B;
+
+	return make_float3( rVal, gVal, bVal);
+}

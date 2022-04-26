@@ -1,0 +1,29 @@
+//GoPro Protune Input Transform for DaVinci YRGB workflow inside DaVinci Resolve
+
+//Protune NATIVE to DCI-P3
+__CONSTANT__ float nat_to_dcip3[3][3] = { {1.17719436f, -0.0823143423f, -0.0948797464f}, {-0.167465463f, 1.35451603f, -0.187050387f}, {0.0845892429f, -0.38272509f, 1.29813576f} };
+
+
+__DEVICE__ float protune_to_linear(float xV) {
+	return ((_powf(113.0f, xV) - 1.0f) / 112.0f);
+}
+
+__DEVICE__ float lin_to_gamma(float x) {
+	if(x >= 0) return _powf(x, 1.0f/2.6f);
+	else return 0.0f;
+}
+
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B) {
+
+	float3 RGBv;
+
+	p_R = protune_to_linear(p_R);
+	p_G = protune_to_linear(p_G);
+	p_B = protune_to_linear(p_B);
+
+	RGBv.x = lin_to_gamma(nat_to_dcip3[0][0] * p_R + nat_to_dcip3[0][1] * p_G + nat_to_dcip3[0][2] * p_B);
+	RGBv.y = lin_to_gamma(nat_to_dcip3[1][0] * p_R + nat_to_dcip3[1][1] * p_G + nat_to_dcip3[1][2] * p_B);
+	RGBv.z = lin_to_gamma(nat_to_dcip3[2][0] * p_R + nat_to_dcip3[2][1] * p_G + nat_to_dcip3[2][2] * p_B);
+
+	return RGBv;
+}
