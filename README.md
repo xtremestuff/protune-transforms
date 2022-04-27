@@ -24,10 +24,16 @@ https://colour.readthedocs.io/en/v0.3.10/colour.models.rgb.dataset.gopro.html
 These older transforms have now been moved into a Legacy directory for backwards compatibility.
 
 
-The v2 transforms are based off the Native to sRGB color transform matrix revealed in an old instance of GoPro Studio (v2.3.0).
+The v2 transforms are based off the Native to sRGB color transform matrix revealed in an old instance of GoPro Studio (v2.5.11).
 
 All subsequent transforms have been developed using the Native to XYZ matrix values derived from this source.
 A slight margin of error must be factored in due to the 3 decimal place rounding on the source Native to sRGB matrix data.
+
+The Native to XYZ matrix is derived as below:
+
+                 [ 0.501918     0.294524      0.154014 ]
+                 [ 0.138173     0.913553     -0.051725 ]
+                 [ 0.078774    -0.320766      1.331049 ]
 
 
 
@@ -35,7 +41,7 @@ A slight margin of error must be factored in due to the 3 decimal place rounding
 
 The DCTL files contain ACES IDTs and various Gamma/Gamut transforms.
 
-Older instances of the transforms with the colour matrices are contained in the Legacy folder.
+Older instances of the transforms with the colour derived matrices are contained in the Legacy folder.
 
 
 ### LUT Folder
@@ -71,14 +77,19 @@ If using Resolve 17 or above, The ACES DCTL files in the IDT folder must be copi
 
 ## Usage
 
-### ACES IDT
+### Exposure Notes
+
+The Protune Gamma curve is defined within the 0 - 1 range with the peak being equivalent to SDR Peak White. Despite this, the curve has a significantly higher Middle Gray value of 68% IRE. A significant portion of the curve is allocated to the lower code values under Middle Gray. This means that when footage is corrected using the transforms, anything under-exposed will be pushed further towards the shadows. To counteract this, the footage should either be exposed correctly, or under-exposed by 1-2 stops when recording and adjusted in accordingly after applying the transform.
+
+
+### Usage as ACES IDT
 
 As of Resolve 17, the IDT can be loaded as an Input Transform via the Project settings.
 
 As of Resolve 17.2, the IDT files can be selected as ACES Input Transforms for individual clips.
 
 
-### DaVinci CTL or LUT Menu
+### Usage in DaVinci CTL or via LUT Menu
 Select the relevant dctl file via the DaVinci CTL or LUT Menu. Ensure Input Color Space is set to Bypass (or Same as Timeline) for the relevant clip. Ensure the selected DCTL matches with the project's Timeline Color Space and Gamma. Input DRT should be set to None.
 
 
