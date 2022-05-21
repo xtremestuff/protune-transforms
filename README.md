@@ -56,6 +56,10 @@ C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT\
 #### Linux
 /home/resolve/LUT
 
+or
+
+/opt/resolve/LUT
+
 
 
 ### ACES IDT Folder
