@@ -106,6 +106,12 @@ To use in ACES via the LUT menu (or DaVinci CTL if using Resolve 16 or below), c
 ```
 
 
+## Tutorials
+
+### How to use Custom ACES IDTs & ODTs in DaVinci Resolve
+
+[![Custom ACES IDT & ODT](https://img.youtube.com/vi/I6dpYL4knms/0.jpg)](https://www.youtube.com/watch?v=I6dpYL4knms "Custom ACES IDT & ODT")
+
 
 
 ## ACEScc / ACEScct Transforms
