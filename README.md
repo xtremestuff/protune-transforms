@@ -53,6 +53,9 @@ C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT\
 #### Mac
 /Library/Application Support/Blackmagic Design/DaVinci Resolve/LUT
 
+#### iPad
+LUT folder located within DaVinci Resolve App
+
 #### Linux
 /home/resolve/LUT
 
@@ -74,6 +77,9 @@ If using Resolve 17 or above, The ACES DCTL files in the IDT folder must be copi
 
 #### Mac
 ~/Library/Application Support/Blackmagic Design/DaVinci Resolve/ACES Transforms/IDT/
+
+#### iPad
+Not possible with current release. Follow instructions to use via [LUT Menu](#usage-in-davinci-ctl-or-via-lut-menu) instead
 
 #### Linux
 ~/.local/share/DaVinciResolve/ACES Transforms/IDT/
