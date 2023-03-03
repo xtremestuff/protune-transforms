@@ -1,7 +1,7 @@
 # protune-transforms
 GoPro Protune Transforms
 
-The following are a series of GoPro Protune Input Transforms (IDT) for DaVinci Resolve.
+The following are a series of GoPro Protune Input Transforms (IDT) and Output Transforms (ODT) for DaVinci Resolve.
 
 Depending on the chosen Color Science, they can be used either in ACES or in DaVinci YRGB.
 
@@ -11,15 +11,16 @@ The Protune gamma curve is based off the Technicolor CineStyle gamma.
 
 ## Naming Convetion
 
-All files with the exception of the ACES IDTs use the following naming convention:
+All files with the exception of the ACES IDTs & ODTs use the following naming convention:
 
 `GoPro_Protune_<CAMERA-COLOR-SPACE>_<DESTINATION-COLOR-SPACE>_<DESTINATION-GAMMA>.dctl`
 
 
-## Legacy vs V2
+## Legacy vs v2 Transforms
 
-The Legacy Transforms are based off the derived color primaries identified from the colour dataset:
+The Legacy Transforms are based off the color primaries identified from the colour dataset that has been reverse engineered:
 https://colour.readthedocs.io/en/v0.3.10/colour.models.rgb.dataset.gopro.html
+
 
 These older transforms have now been moved into a Legacy directory for backwards compatibility.
 
@@ -27,19 +28,25 @@ These older transforms have now been moved into a Legacy directory for backwards
 The v2 transforms are based off the Native to sRGB color transform matrix revealed in an old instance of GoPro Studio (v2.5.11).
 
 All subsequent transforms have been developed using the Native to XYZ matrix values derived from this source.
-A slight margin of error must be factored in due to the 3 decimal place rounding on the source Native to sRGB matrix data.
 
-The Native to XYZ matrix is derived as below:
+
+**As confirmed by David Newman from GoPro, the Native to sRGB matrix was calculated with the IMX117 sensor which was used for earlier GoPro models up to Hero 5.
+
+Recent GoPro camera releases have different sensors but they appear use the same color matrix data.**
+
+
+The Native to XYZ matrix is derived as below *:
 
                  [ 0.501918     0.294524      0.154014 ]
                  [ 0.138173     0.913553     -0.051725 ]
                  [ 0.078774    -0.320766      1.331049 ]
 
+<sub>* A slight margin of error must be factored in due to the 3 decimal place rounding on the source Native to sRGB matrix data.</sub>
 
 
 ## Installation
 
-The DCTL files contain ACES IDTs and various Gamma/Gamut transforms.
+The DCTL files contain ACES IDTs, ODTs and various Gamma/Gamut transforms.
 
 Older instances of the transforms with the colour derived matrices are contained in the Legacy folder.
 
@@ -85,6 +92,25 @@ Not possible with current release. Follow instructions to use via [LUT Menu](#us
 ~/.local/share/DaVinciResolve/ACES Transforms/IDT/
 
 
+### ACES ODT Folder
+
+Note: If using Resolve 16 or below, copy the ACES DCTL files in the ODT folder to the designated LUT folder mentioned above.
+
+If using Resolve 17 or above, The ACES DCTL files in the ODT folder must be copied to the appropriate IDT directory based on the host Operating System:
+
+
+#### Windows
+%APPDATA%\Blackmagic Design\DaVinci Resolve\Support\ACES Transforms\ODT\
+
+#### Mac
+~/Library/Application Support/Blackmagic Design/DaVinci Resolve/ACES Transforms/ODT/
+
+#### iPad
+Not possible with current release.
+
+#### Linux
+~/.local/share/DaVinciResolve/ACES Transforms/ODT/
+
 ## Usage
 
 ### Exposure Notes
@@ -92,11 +118,16 @@ Not possible with current release. Follow instructions to use via [LUT Menu](#us
 The Protune Gamma curve is defined within the 0 - 1 range with the peak being equivalent to SDR Peak White. Despite this, the curve has a significantly higher Middle Gray value of 68% IRE. A significant portion of the curve is allocated to the lower code values under Middle Gray. This means that when footage is corrected using the transforms, anything under-exposed will be pushed further towards the shadows. To counteract this, the footage should either be exposed correctly, or under-exposed by 1-2 stops when recording and adjusted in accordingly after applying the transform.
 
 
-### Usage as ACES IDT
+### Usage as ACES IDT or ODT
 
-As of Resolve 17, the IDT can be loaded as an Input Transform via the Project settings.
+As of Resolve 17, the IDT can be loaded as an Input Transform via the Project settings and the ODT can also be loaded as an Output Transform via the Project settings.
 
 As of Resolve 17.2, the IDT files can be selected as ACES Input Transforms for individual clips.
+
+
+### Usage via ACES Transforms
+
+The IDT and ODT can be used through Resolve's ACES Transforms OFX plugin
 
 
 ### Usage in DaVinci CTL or via LUT Menu
@@ -120,7 +151,7 @@ To use in ACES via the LUT menu (or DaVinci CTL if using Resolve 16 or below), c
 
 
 
-## ACEScc / ACEScct Transforms
+## ACEScc / ACEScct Input Transforms
 
 #### GoPro_Protune_Native_ACES_v2.dctl
 IDT for ACES using Protune (FLAT) Gamma with Native Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
@@ -133,6 +164,13 @@ Legacy IDT for ACES using Protune (FLAT) Gamma with Native Color Space - with Br
 
 #### GoPro_Protune_Rec709_Bradford-CA_ACES.dctl (Legacy)
 Legacy IDT for ACES using Protune (FLAT) Gamma with Rec.709 (non-Native) Color Space - with Bradford Chromatic Adaptation (For test purposes only)
+
+
+
+## ACEScc / ACEScct Output Transforms
+
+#### Protune Native ODT - CSC.dctl
+ODT for ACES with output to Protune (FLAT) Gamma with Native Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
 
 
 

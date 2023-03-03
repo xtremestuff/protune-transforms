@@ -1,0 +1,27 @@
+//GoPro Protune Native ODT
+#if (__RESOLVE_VER_MAJOR__ >= 17)
+DEFINE_ACES_PARAM(IS_PARAMETRIC_ACES_TRANSFORM: 0)
+#endif
+
+
+//ACES to Native using CAT02
+__CONSTANT__ float ap0n[3][3] =  { {1.84678078f, -0.620417893f, -0.226362854f}, {0.0857779384f, 0.904318333f, 0.00990375783f}, {-0.0880818665f, 0.255261868f, 0.832819998f} };
+
+
+lin_to_protune(float x) {
+	return _log10f(x * 112.0f + 1.0f) / _log10f(113.0f);
+}
+
+
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B) {
+
+	float rVal = ap0n[0][0] * p_R + ap0n[0][1] * p_G + ap0n[0][2] * p_B;
+	float gVal = ap0n[1][0] * p_R + ap0n[1][1] * p_G + ap0n[1][2] * p_B;
+	float bVal = ap0n[2][0] * p_R + ap0n[2][1] * p_G + ap0n[2][2] * p_B;
+	
+	rVal = lin_to_protune(rVal);
+	gVal = lin_to_protune(gVal);
+	bVal = lin_to_protune(bVal);
+
+	return make_float3( rVal, gVal, bVal);
+}
