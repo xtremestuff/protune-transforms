@@ -21,27 +21,36 @@ All files with the exception of the ACES IDTs & ODTs use the following naming co
 The Legacy Transforms are based off the color primaries identified from the colour dataset that has been reverse engineered:
 https://colour.readthedocs.io/en/v0.3.10/colour.models.rgb.dataset.gopro.html
 
-
 These older transforms have now been moved into a Legacy directory for backwards compatibility.
-
 
 The v2 transforms are based off the Native to sRGB color transform matrix revealed in an old instance of GoPro Studio (v2.5.11).
 
 All subsequent transforms have been developed using the Native to XYZ matrix values derived from this source.
 
+**As confirmed by David Newman from GoPro, the Native to sRGB matrix was calculated with the IMX117 sensor which was used for earlier GoPro models up to Hero 5.**
 
-**As confirmed by David Newman from GoPro, the Native to sRGB matrix was calculated with the IMX117 sensor which was used for earlier GoPro models up to Hero 5.
+**Recent GoPro camera releases have different sensors but they appear to use the same color matrix data. <sup>#<sup>**
 
-Recent GoPro camera releases have different sensors but they appear use the same color matrix data.**
+> **<sup>#</sup> Important:**
+> Whilst all GoPros appear to use the same Color Matrices, the raw gains applied for Native White Balance are different between the various imaging sensors and the resulting XYZ Matrix will also be different.
+> <br>There will be slight color variations when the "Native" color transforms (based off the IMX117 sensor) are used across the different GoPro iterations. The Rec.709 Gamut based transforms should work across all variations regardless.
+
+The imaging sensors and their associated GoPro models are listed below:
+
+| Sensor    | Camera           |
+|-----------|------------------|
+| IMX117    | Hero 3 Black<br>Hero 3+ Black<br>Hero 4 Black<br>Hero 5 Black  |
+| IMX277    | Hero 6 Black<br>Hero 7 Black<br>Hero 8 Black  |
+| IMX677(L) | Hero 9 Black<br>Hero 10 Black<br>Hero 11 Black<br>Hero 12 Black |
 
 
-The Native to XYZ matrix is derived as below *:
+The Native to XYZ matrix (for IMX117 based GoPros) is derived as below *:
 
                  [ 0.501918     0.294524      0.154014 ]
                  [ 0.138173     0.913553     -0.051725 ]
                  [ 0.078774    -0.320766      1.331049 ]
 
-<sub>* A slight margin of error must be factored in due to the 3 decimal place rounding on the source Native to sRGB matrix data.</sub>
+> <sub>* A slight margin of error must be factored in due to the 3 decimal place rounding on the source Native to sRGB matrix data.</sub>
 
 
 ## Installation
