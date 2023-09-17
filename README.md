@@ -59,6 +59,10 @@ The DCTL files contain ACES IDTs, ODTs and various Gamma/Gamut transforms.
 
 Older instances of the transforms with the colour derived matrices are contained in the Legacy folder.
 
+Installation can be done automatically by using the included Windows batch file and/or the *nix (Linux/Unix) shell script.
+
+Manual installation details are listed in the sections below.
+
 
 ### LUT Folder
 Save the non-ACES DCTL files in the LUT folder to the relevant location based on the host Operating System as noted below:
@@ -126,23 +130,27 @@ Not possible with current release.
 
 The Protune Gamma curve is defined within the 0 - 1 range with the peak being equivalent to SDR Peak White. Despite this, the curve has a significantly higher Middle Gray value of 68% IRE. A significant portion of the curve is allocated to the lower code values under Middle Gray. This means that when footage is corrected using the transforms, anything under-exposed will be pushed further towards the shadows. To counteract this, the footage should either be exposed correctly, or under-exposed by 1-2 stops when recording and adjusted in accordingly after applying the transform.
 
+### DaVinci YRGB Color Science
 
-### Usage as ACES IDT or ODT
+#### Usage in DaVinci CTL or via LUT Menu
+Select the relevant dctl file via the LUT menu (or DaVinci CTL if using Resolve 16 or below). Ensure Input Color Space is set to Bypass (or Same as Timeline) for the relevant clip. Ensure the selected DCTL matches with the project's Timeline Color Space and Gamma. Input DRT should be set to None.
+
+
+### ACES Color Science
+
+#### Usage as ACES IDT or ODT
 
 As of Resolve 17, the IDT can be loaded as an Input Transform via the Project settings and the ODT can also be loaded as an Output Transform via the Project settings.
 
 As of Resolve 17.2, the IDT files can be selected as ACES Input Transforms for individual clips.
 
 
-### Usage via ACES Transforms
+#### Usage via ACES Transforms
 
 The IDT and ODT can be used through Resolve's ACES Transforms OFX plugin
 
 
-### Usage in DaVinci CTL or via LUT Menu
-Select the relevant dctl file via the DaVinci CTL or LUT Menu. Ensure Input Color Space is set to Bypass (or Same as Timeline) for the relevant clip. Ensure the selected DCTL matches with the project's Timeline Color Space and Gamma. Input DRT should be set to None.
-
-
+#### Usage in ACES via LUT Menu
 To use in ACES via the LUT menu (or DaVinci CTL if using Resolve 16 or below), copy the IDT folder contents to the LUT folder and comment out the first few lines as follows:
 
 ```
@@ -150,6 +158,9 @@ To use in ACES via the LUT menu (or DaVinci CTL if using Resolve 16 or below), c
 //DEFINE_ACES_PARAM(IS_PARAMETRIC_ACES_TRANSFORM: 0)
 //#endif
 ```
+
+Ensure Input Transform is set to None for each clip.
+
 
 
 ## Tutorials
@@ -160,13 +171,16 @@ To use in ACES via the LUT menu (or DaVinci CTL if using Resolve 16 or below), c
 
 
 
-## ACEScc / ACEScct Input Transforms
+## ACES Input Transforms
 
 #### GoPro_Protune_Native_ACES_v2.dctl
 IDT for ACES using Protune (FLAT) Gamma with Native Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
 
 #### GoPro_Protune_Rec709_ACES.dctl
 IDT for ACES using Protune (FLAT) Gamma with Rec.709 (non-Native) Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
+
+#### GoPro_Protune-LogB400_Rec709_ACES.dctl
+IDT for ACES using Protune (FLAT) LogB=400 Custom Gamma with Rec.709 (non-Native) Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
 
 #### GoPro_Protune_Native_Bradford-CA_ACES.dctl (Legacy)
 Legacy IDT for ACES using Protune (FLAT) Gamma with Native Color Space - with Bradford Chromatic Adaptation (For test purposes only)
@@ -176,7 +190,7 @@ Legacy IDT for ACES using Protune (FLAT) Gamma with Rec.709 (non-Native) Color S
 
 
 
-## ACEScc / ACEScct Output Transforms
+## ACES Output Transforms
 
 #### Protune Native ODT - CSC.dctl
 ODT for ACES with output to Protune (FLAT) Gamma with Native Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
@@ -185,11 +199,15 @@ ODT for ACES with output to Protune (FLAT) Gamma with Native Color Space - with 
 
 ## DaVinci Intermediate Transforms
 
+### Native Color Gamut
+
 #### GoPro_Protune_Native_DWG_DaVinci-Intermediate_v2.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to DaVinci Wide Gamut and DaVinci Intermediate
 
 #### GoPro_Protune_Native_Rec2020_DaVinci-Intermediate_v2.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.2020 and DaVinci Intermediate
+
+### Rec.709 Color Gamut
 
 #### GoPro_Protune_Rec709_DWG_DaVinci-Intermediate.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to DaVinci Wide Gamut and DaVinci Intermediate
@@ -197,21 +215,22 @@ Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - o
 #### GoPro_Protune_Rec709_Rec2020_DaVinci-Intermediate.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.2020 and DaVinci Intermediate
 
+#### GoPro_Protune-LogB400_Rec709_DWG_DaVinci-Intermediate.dctl
+Input Transform for YRGB using Protune (FLAT) LogB=400 Custom Gamma with Rec.709 Color Space - output to DaVinci Wide Gamut and DaVinci Intermediate
+
+#### GoPro_Protune-LogB400_Rec709_Rec2020_DaVinci-Intermediate.dctl
+Input Transform for YRGB using Protune (FLAT) LogB=400 Custom Gamma with Rec.709 Color Space - output to Rec.2020 and DaVinci Intermediate
 
 
 ## Other DaVinci YRGB Transforms
 
+### Native Color Gamut
+
 #### GoPro_Protune_Native_Rec709_Scene_v2.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.709 Scene
 
-#### GoPro_Protune_Rec709_Rec709_Scene.dctl
-Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Scene
-
 #### GoPro_Protune_Native_Rec709_Gamma-2.2_v2.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.709 Gamma 2.2
-
-#### GoPro_Protune_Rec709_Rec709_Gamma-2.2.dctl
-Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.2
 
 #### GoPro_Protune_Native_Rec709_Gamma-2.4_v2.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.709 Gamma 2.4
@@ -219,24 +238,33 @@ Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - ou
 #### GoPro_Protune_Native_Rec709_Gamma-2.6_v2.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.709 Gamma 2.6
 
+#### GoPro_Protune_Native_P3-D65_Scene_v2_v2.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to P3-D65 Scene
+
+
+### Rec.709 Color Gamut
+
+#### GoPro_Protune_Rec709_Rec709_Scene.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Scene
+
+#### GoPro_Protune_Rec709_Rec709_Gamma-2.2.dctl
+Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.2
+
 #### GoPro_Protune_Rec709_Rec709_Gamma-2.4.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.4
 
 #### GoPro_Protune_Rec709_Rec709_Gamma-2.6.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.6
 
-#### GoPro_Protune_Native_P3-D65_Scene_v2_v2.dctl
-Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to P3-D65 Scene
+#### GoPro_Protune-LogB400_Rec709_Rec709_Scene.dctl
+Input Transform for YRGB using Protune (FLAT) LogB=400 Custom Gamma with Rec.709 Color Space - output to Rec.709 Scene
 
-#### GoPro_Protune_Native_P3-D65_Gamma-2.2_v2.dctl
-Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to P3-D65 Gamma 2.2
+#### GoPro_Protune-LogB400_Rec709_Rec709_Gamma-2.2.dctl
+Input Transform for YRGB using Protune (FLAT) LogB=400 Custom Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.2
 
-#### GoPro_Protune_Native_P3-D65_Gamma-2.4_v2.dctl
-Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to P3-D65 Gamma 2.4
+#### GoPro_Protune-LogB400_Rec709_Rec709_Gamma-2.4.dctl
+Input Transform for YRGB using Protune (FLAT) LogB=400 Custom Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.4
 
-#### GoPro_Protune_Native_P3-D65_Gamma-2.6_v2.dctl
-Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to P3-D65 Gamma 2.6
-
-#### GoPro_Protune_Native_DCI-P3_Gamma-2.6_v2.dctl
-Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to DCI-P3 Gamma 2.6
+#### GoPro_Protune-LogB400_Rec709_Rec709_Gamma-2.6.dctl
+Input Transform for YRGB using Protune (FLAT) LogB=400 Custom Gamma with Rec.709 Color Space - output to Rec.709 Gamma 2.6
 

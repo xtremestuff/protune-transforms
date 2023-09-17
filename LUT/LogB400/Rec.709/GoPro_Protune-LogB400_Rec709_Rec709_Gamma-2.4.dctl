@@ -1,0 +1,20 @@
+//GoPro Protune Input Transform for DaVinci YRGB workflow inside DaVinci Resolve
+
+__DEVICE__ float protune_to_linear(float xV) {
+	return ((_powf(400.0f, xV) - 1.0f) / 399.0f);
+}
+
+__DEVICE__ float lin_to_gamma(float x) {
+	if(x >= 0) return _powf(x, 1.0f/2.4f);
+	else return 0.0f;
+}
+
+
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B) {
+
+	p_R = lin_to_gamma(protune_to_linear(p_R));
+	p_G = lin_to_gamma(protune_to_linear(p_G));
+	p_B = lin_to_gamma(protune_to_linear(p_B));
+
+	return make_float3(p_R,p_G,p_B);
+}

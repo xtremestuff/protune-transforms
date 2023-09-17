@@ -1,0 +1,28 @@
+//GoPro Protune Input Transform for DaVinci YRGB workflow inside DaVinci Resolve
+
+//Protune Rec.709 to Rec.2020
+__CONSTANT__ float rec709_to_rec2020[3][3] = { { 0.6274038959f, 0.3292830384f, 0.0433130657f}, { 0.0690972894f, 0.9195403951f, 0.0113623156f}, { 0.0163914389f, 0.0880133079f, 0.8955952532f} };
+
+__DEVICE__ float protune_to_linear(float xV) {
+	return ((_powf(400.0f, xV) - 1.0f) / 399.0f);
+}
+
+__DEVICE__ float lin_to_inter(float x) {
+	if(x > 0.00262409f) return (_log2f(x + 0.0075f) + 7.0f) * 0.07329248f;
+	else return x * 10.44426855f;
+}
+
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B) {
+
+	float3 RGBv;
+
+	p_R = protune_to_linear(p_R);
+	p_G = protune_to_linear(p_G);
+	p_B = protune_to_linear(p_B);
+
+	RGBv.x = lin_to_inter(rec709_to_rec2020[0][0] * p_R + rec709_to_rec2020[0][1] * p_G + rec709_to_rec2020[0][2] * p_B);
+	RGBv.y = lin_to_inter(rec709_to_rec2020[1][0] * p_R + rec709_to_rec2020[1][1] * p_G + rec709_to_rec2020[1][2] * p_B);
+	RGBv.z = lin_to_inter(rec709_to_rec2020[2][0] * p_R + rec709_to_rec2020[2][1] * p_G + rec709_to_rec2020[2][2] * p_B);
+
+	return RGBv;
+}
