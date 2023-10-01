@@ -32,7 +32,7 @@ All subsequent transforms have been developed using the Native to XYZ matrix val
 **Recent GoPro camera releases have different sensors but they appear to use the same color matrix data. <sup>#<sup>**
 
 > **<sup>#</sup> Important:**
-> Whilst all GoPros appear to use the same Color Matrices, the raw gains applied for Native White Balance are different between the various imaging sensors and the resulting XYZ Matrix will also be different.
+> Whilst all GoPros appear to use the same Color Matrices, the raw gains applied for Native White Balance are different between the various imaging sensors and even within the models using the same sensors. The resulting XYZ Matrix will be different for each GoPro model.
 > <br>There will be slight color variations when the "Native" color transforms (based off the IMX117 sensor) are used across the different GoPro iterations. The Rec.709 Gamut based transforms should work across all variations regardless.
 
 The imaging sensors and their associated GoPro models are listed below:
@@ -44,13 +44,15 @@ The imaging sensors and their associated GoPro models are listed below:
 | IMX677(L) | Hero 9 Black<br>Hero 10 Black<br>Hero 11 Black<br>Hero 12 Black |
 
 
-The Native to XYZ matrix (for IMX117 based GoPros) is derived as below *:
+The Native to XYZ matrix (for IMX117 based GoPro HERO5) is derived as below *:
 
                  [ 0.501918     0.294524      0.154014 ]
                  [ 0.138173     0.913553     -0.051725 ]
                  [ 0.078774    -0.320766      1.331049 ]
 
 > <sub>* A slight margin of error must be factored in due to the 3 decimal place rounding on the source Native to sRGB matrix data.</sub>
+
+For camera specific profiles, including WIDE=1, custom LOGB parameters and Tungsten presets, refer to the commercially available GP-Tune Transform instead: https://xtremestuff.net/store/gp-tune-transform/
 
 
 ## Installation
