@@ -1,5 +1,6 @@
-xcopy "LUT\" "%ProgramData%\Blackmagic Design\DaVinci Resolve\Support\LUT\"
+xcopy "LUT\" "%ProgramData%\Blackmagic Design\DaVinci Resolve\Support\LUT\" /s
 xcopy "IDT\" "%AppData%\Blackmagic Design\DaVinci Resolve\Support\ACES Transforms\IDT\"
+xcopy "ODT\" "%AppData%\Blackmagic Design\DaVinci Resolve\Support\ACES Transforms\ODT\"
 
 if errorlevel 0 goto success
 :success
