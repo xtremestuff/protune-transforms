@@ -101,6 +101,14 @@ If using Resolve 17 or above, The ACES DCTL files in the IDT folder must be copi
 ~/Library/Application Support/Blackmagic Design/DaVinci Resolve/ACES Transforms/IDT/
 
 #### iPad
+##### Resolve 18.6.2 and above
+
+ACES Transforms/IDT folder within DaVinci Resolve App folder structure
+
+If the folders do not exist, they may need to be created manually.
+
+
+##### Older Resolve versions
 Not possible with current release. Follow instructions to use via [LUT Menu](#usage-in-davinci-ctl-or-via-lut-menu) instead
 
 #### Linux
@@ -121,7 +129,15 @@ If using Resolve 17 or above, The ACES DCTL files in the ODT folder must be copi
 ~/Library/Application Support/Blackmagic Design/DaVinci Resolve/ACES Transforms/ODT/
 
 #### iPad
-Not possible with current release.
+##### Resolve 18.6.2 and above
+
+ACES Transforms/ODT folder within DaVinci Resolve App folder structure
+
+If the folders do not exist, they may need to be created manually.
+
+
+##### Older Resolve versions
+Not possible with older versions.
 
 #### Linux
 ~/.local/share/DaVinciResolve/ACES Transforms/ODT/
