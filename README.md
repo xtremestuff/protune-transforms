@@ -32,9 +32,12 @@ All subsequent transforms have been developed using the Native to XYZ matrix val
 **Recent GoPro camera releases have different sensors but they appear to use the same color matrix data. <sup>#<sup>**
 
 > **<sup>#</sup> Important:**
-> Whilst all GoPros appear to use the same Color Matrices, the raw gains applied for Native White Balance are different between the various imaging sensors and even within the models using the same sensors. The resulting XYZ Matrix will be different for each GoPro model.
-> <br>There will be slight color variations when the "Native" color transforms (based off the IMX117 sensor) are used across the different GoPro iterations. The Rec.709 Gamut based transforms should work across all variations regardless.
+> Whilst all GoPros appear to use the same Color Matrices, the raw gains applied for Native White Balance are different between the various imaging sensors and even within the models using the same sensors.
+> <br><br>**The resulting XYZ Matrix will be different for each GoPro model.**
+> <br><br>**There will be slight color variations when the "Native" color transforms (based off the IMX117 sensor & HERO5 Black) are used across the different GoPro iterations.**
+> <br><br>The Rec.709 Gamut based transforms should work across all variations regardless.
 
+### Sensor Data
 The imaging sensors and their associated GoPro models are listed below:
 
 | Sensor    | Camera           |
@@ -44,6 +47,7 @@ The imaging sensors and their associated GoPro models are listed below:
 | IMX677(L) | Hero 9 Black<br>Hero 10 Black<br>Hero 11 Black<br>Hero 12 Black |
 
 
+### Matrix Data
 The Native to XYZ matrix (for IMX117 based GoPro HERO5) is derived as below *:
 
                  [ 0.501918     0.294524      0.154014 ]
@@ -53,6 +57,8 @@ The Native to XYZ matrix (for IMX117 based GoPro HERO5) is derived as below *:
 > <sub>* A slight margin of error must be factored in due to the 3 decimal place rounding on the source Native to sRGB matrix data.</sub>
 
 For camera specific profiles, including WIDE=1, custom LOGB parameters and Tungsten presets, refer to the commercially available GP-Tune Transform instead: https://xtremestuff.net/store/gp-tune-transform/
+
+See [Discussion](https://github.com/xtremestuff/protune-transforms/discussions/13) for more information.
 
 
 ## Installation
@@ -103,13 +109,13 @@ If using Resolve 17 or above, The ACES DCTL files in the IDT folder must be copi
 #### iPad
 ##### Resolve 18.6.2 and above
 
-ACES Transforms/IDT folder within DaVinci Resolve App folder structure
+ACES Transforms/IDT/ folder within DaVinci Resolve App folder structure
 
 If the folders do not exist, they may need to be created manually.
 
 
 ##### Older Resolve versions
-Not possible with current release. Follow instructions to use via [LUT Menu](#usage-in-davinci-ctl-or-via-lut-menu) instead
+Not possible with older iPad releases. Follow instructions to use via [LUT Menu](#usage-in-davinci-ctl-or-via-lut-menu) instead
 
 #### Linux
 ~/.local/share/DaVinciResolve/ACES Transforms/IDT/
@@ -131,7 +137,7 @@ If using Resolve 17 or above, The ACES DCTL files in the ODT folder must be copi
 #### iPad
 ##### Resolve 18.6.2 and above
 
-ACES Transforms/ODT folder within DaVinci Resolve App folder structure
+ACES Transforms/ODT/ folder within DaVinci Resolve App folder structure
 
 If the folders do not exist, they may need to be created manually.
 
@@ -146,7 +152,7 @@ Not possible with older versions.
 
 ### Exposure Notes
 
-The Protune Gamma curve is defined within the 0 - 1 range with the peak being equivalent to SDR Peak White. Despite this, the curve has a significantly higher Middle Gray value of 68% IRE. A significant portion of the curve is allocated to the lower code values under Middle Gray. This means that when footage is corrected using the transforms, anything under-exposed will be pushed further towards the shadows. To counteract this, the footage should either be exposed correctly, or under-exposed by 1-2 stops when recording and adjusted in accordingly after applying the transform.
+The Protune Gamma curve is defined within the 0 - 1 range with the peak being equivalent to SDR Peak White. Despite this, the curve has a significantly higher Middle Gray value of 68% IRE. A significant portion of the curve is allocated to the lower code values under Middle Gray. This means that when footage is corrected using the transforms, anything under-exposed will be pushed further towards the shadows. To counteract this, the footage should either be exposed correctly, or under-exposed by 1-2 stops when recording and adjusted in Resolve accordingly after applying the transform.
 
 ### DaVinci YRGB Color Science
 
