@@ -7,6 +7,8 @@ Depending on the chosen Color Science, they can be used either in ACES or in DaV
 
 The Protune gamma curve is based off the Technicolor CineStyle gamma.
 
+The GP-Log (LogB=400) curve is a variation of the Protune gamma curve and uses a slightly higher Base value (400) compared to Protune (113).
+
 
 
 ## Naming Convetion
@@ -44,11 +46,11 @@ The imaging sensors and their associated GoPro models are listed below:
 |-----------|------------------|
 | IMX117    | Hero 3 Black<br>Hero 3+ Black<br>Hero 4 Black<br>Hero 5 Black  |
 | IMX277    | Hero 6 Black<br>Hero 7 Black<br>Hero 8 Black  |
-| IMX677(L) | Hero 9 Black<br>Hero 10 Black<br>Hero 11 Black<br>Hero 12 Black |
+| IMX677(L) | Hero 9 Black<br>Hero 10 Black<br>Hero 11 Black<br>Hero 12 Black<br>Hero 13 Black |
 
 
 ### Matrix Data
-The Native to XYZ matrix (for IMX117 based GoPro HERO5) is derived as below *:
+The Native to XYZ matrix (derived from IMX117 based GoPro HERO5) is calculated as below *:
 
                  [ 0.501918     0.294524      0.154014 ]
                  [ 0.138173     0.913553     -0.051725 ]
@@ -175,7 +177,7 @@ The IDT and ODT can be used through Resolve's ACES Transforms OFX plugin
 
 
 #### Usage in ACES via LUT Menu
-To use in ACES via the LUT menu (or DaVinci CTL if using Resolve 16 or below), copy the IDT folder contents to the LUT folder and comment out the first few lines as follows:
+To (optionally) use in ACES via the LUT menu (or DaVinci CTL if using Resolve 16 or below), copy the IDT folder contents to the LUT folder and comment out the first few lines as follows:
 
 ```
 //#if (__RESOLVE_VER_MAJOR__ >= 17)
@@ -196,6 +198,9 @@ Ensure Input Transform is set to None for each clip.
 
 
 ## ACES Input Transforms
+
+#### GoPro_GP-Log_Native_ACES.dctl
+IDT for ACES using Protune GP-Log (LogB=400) Gamma with Native Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
 
 #### GoPro_Protune_Native_ACES_v2.dctl
 IDT for ACES using Protune (FLAT) Gamma with Native Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
@@ -225,6 +230,12 @@ ODT for ACES with output to Protune (FLAT) Gamma with Native Color Space - with 
 
 ### Native Color Gamut
 
+#### GoPro_GP-Log_Native_DWG_DaVinci-Intermediate.dctl
+Input Transform for YRGB using Protune GP-Log (LogB=400) Gamma with Native color - output to DaVinci Wide Gamut and DaVinci Intermediate
+
+#### GoPro_GP-Log_Native_Rec2020_DaVinci-Intermediate.dctl
+Input Transform for YRGB using Protune GP-Log (LogB=400) Gamma with Native color - output to Rec.2020 and DaVinci Intermediate
+
 #### GoPro_Protune_Native_DWG_DaVinci-Intermediate_v2.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to DaVinci Wide Gamut and DaVinci Intermediate
 
@@ -249,6 +260,9 @@ Input Transform for YRGB using Protune (FLAT) LogB=400 Custom Gamma with Rec.709
 ## Other DaVinci YRGB Transforms
 
 ### Native Color Gamut
+
+#### GoPro_GP-Log_Native_Rec709_Scene.dctl
+Input Transform for YRGB using Protune GP-Log (LogB=400) Gamma with Native color - output to Rec.709 Scene
 
 #### GoPro_Protune_Native_Rec709_Scene_v2.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to Rec.709 Scene
