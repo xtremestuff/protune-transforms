@@ -1,5 +1,5 @@
 # protune-transforms
-GoPro Protune Transforms
+GoPro Protune, GP-Log & GP-Log2 Transforms
 
 The following are a series of GoPro Protune Input Transforms (IDT) and Output Transforms (ODT) for DaVinci Resolve.
 
@@ -8,6 +8,8 @@ Depending on the chosen Color Science, they can be used either in ACES or in DaV
 The Protune gamma curve is based off the Technicolor CineStyle gamma.
 
 The GP-Log (LogB=400) curve is a variation of the Protune gamma curve and uses a slightly higher Base value (400) compared to Protune (113).
+
+The GP-Log2 (LogB=600) curve is another variation of the Protune gamma curve and uses an even higher Base value (600) compared to both Protune and GP-Log.
 
 
 
@@ -199,6 +201,9 @@ Ensure Input Transform is set to None for each clip.
 
 ## ACES Input Transforms
 
+#### GoPro_GP-Log2_Rec2020_ACES.dctl
+IDT for ACES using Protune GP-Log2 (LogB=600) Gamma with Rec.2020 Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
+
 #### GoPro_GP-Log_Native_ACES.dctl
 IDT for ACES using Protune GP-Log (LogB=400) Gamma with Native Color Space - with CAT02 Chromatic Adaptation for use in DaVinci Resolve
 
@@ -228,13 +233,21 @@ ODT for ACES with output to Protune (FLAT) Gamma with Native Color Space - with 
 
 ## DaVinci Intermediate Transforms
 
+### Rec.2020 Color Gamut
+
+#### GoPro_GP-Log2_Rec2020_DWG_DaVinci-Intermediate.dctl
+Input Transform for YRGB using GP-Log2 (LogB=600) Gamma with Rec.2020 color - output to DaVinci Wide Gamut and DaVinci Intermediate
+
+#### GoPro_GP-Log2_Rec2020_Rec2020_DaVinci-Intermediate.dctl
+Input Transform for YRGB using GP-Log2 (LogB=600) Gamma with Rec.2020 color - output to Rec.2020 and DaVinci Intermediate
+
 ### Native Color Gamut
 
 #### GoPro_GP-Log_Native_DWG_DaVinci-Intermediate.dctl
-Input Transform for YRGB using Protune GP-Log (LogB=400) Gamma with Native color - output to DaVinci Wide Gamut and DaVinci Intermediate
+Input Transform for YRGB using GP-Log (LogB=400) Gamma with Native color - output to DaVinci Wide Gamut and DaVinci Intermediate
 
 #### GoPro_GP-Log_Native_Rec2020_DaVinci-Intermediate.dctl
-Input Transform for YRGB using Protune GP-Log (LogB=400) Gamma with Native color - output to Rec.2020 and DaVinci Intermediate
+Input Transform for YRGB using GP-Log (LogB=400) Gamma with Native color - output to Rec.2020 and DaVinci Intermediate
 
 #### GoPro_Protune_Native_DWG_DaVinci-Intermediate_v2.dctl
 Input Transform for YRGB using Protune (FLAT) Gamma with Native Color Space - output to DaVinci Wide Gamut and DaVinci Intermediate
